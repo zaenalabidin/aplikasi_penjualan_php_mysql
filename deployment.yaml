@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aplikasi-pos
+  labels:
+    app: aplikasi-pos
+  annotations:
+    monitoring: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aplikasi-pos
+  template:
+    metadata:
+      labels:
+        app: aplikasi-pos
+    spec:
+      containers:
+        - env:
+            - name: WHATEVER_ENV
+              value: WHATEVER_VALUE
+          image: abidabidin/aplikasi-pos
+          imagePullPolicy: Always
+          name: aplikasi-pos
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aplikasi-pos-service
+spec:
+  selector:
+    app: aplikasi-pos
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
