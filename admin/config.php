@@ -1,4 +1,3 @@
 <?php 
-mysql_connect("localhost","root","xxx");
-mysql_select_db("malasngoding_kios");
+mysqli_connect("35.222.177.191","root","","malasngoding_kios");
 ?>
